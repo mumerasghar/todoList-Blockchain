@@ -99,6 +99,18 @@ App = {
             loader.hide()
             content.show()
         }
+    },
+    createTask: async () => {
+
+        let accounts = await web3.eth.getAccounts();
+        web3.eth.defaultAccount = accounts[0]
+        App.setLoading(true)
+        const content = $('#newTask').val()
+        console.log(content)
+        console.log(App)
+        await App.todoList.createTask(content, { from: accounts[0] });
+        window.location.reload()
+
     }
 }
 
